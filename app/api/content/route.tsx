@@ -83,7 +83,9 @@ const posts = [
 ];
 
 import { NextResponse } from 'next/server';
+import { getServerSession } from 'next-auth';
 
 export async function GET() {
+  const session = await getServerSession(); // server-side access to the user's session
   return NextResponse.json(posts);
 }

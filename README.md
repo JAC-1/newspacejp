@@ -11,3 +11,7 @@ This app will use [NewsAPI](https://newsapi.org).
 ## Tutorial
 
 I am following the [Fireship.io](fireship.io) Next 13 tutorial.
+
+## Unnecessary comments
+
+Some of the code has unnecessary comments. These are learning notes. 
