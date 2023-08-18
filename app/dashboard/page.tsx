@@ -4,7 +4,7 @@ import { getServerSession } from 'next-auth';
 
 export default async function Dashboard() {
   const session = await getServerSession();
-  if (!session) {
+  if (session) {
     return <h1>You must be signed in to access your dashboard.</h1>;
   } else {
     return (
