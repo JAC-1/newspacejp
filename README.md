@@ -8,10 +8,13 @@ This is a Nextjs 13 learning project. The user will be able to make an account, 
 
 This app will use [NewsAPI](https://newsapi.org).
 
-## Tutorial
+## What am I learning from? 
 
 I am following the [Fireship.io](fireship.io) Next 13 tutorial.
+
+***[Source Code]('https://github.com/fireship-io/nextjs-course')***
 
 ## Unnecessary comments
 
 Some of the code has unnecessary comments. These are learning notes. 
+
