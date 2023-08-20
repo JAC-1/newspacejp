@@ -21,6 +21,9 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
-    "prisma": "^5.1.1"
+    "autoprefixer": "^10.4.15",
+    "postcss": "^8.4.28",
+    "prisma": "^5.1.1",
+    "tailwind": "^4.0.0"
   }
 }

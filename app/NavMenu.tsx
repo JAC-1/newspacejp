@@ -1,15 +1,15 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import styles from './NavMenu.module.css';
+// import styles from './NavMenu.module.css';
 import { SignInButton, SignOutButton } from './components/buttons';
 
 export default function () {
   return (
-    <nav className={styles.nav}>
+    <nav className='relativ flex w-full flex-wrap items-center justify-between py-2 hover:text-neutral-700 focus: text-neutral-700 dark:bg-neutral-600 lg:py-4'>
       <Link href={'/'}>
         <Image src='/vercel.svg' width={216} height={30} alt='Myspace Logo' />
       </Link>
-      <ul className={styles.links}>
+      <ul className=''>
         <li>
           <Link href={'/about'}>About</Link>
         </li>
