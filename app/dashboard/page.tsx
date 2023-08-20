@@ -4,6 +4,7 @@ import { authOptions } from '../api/auth/[...nextauth]/route';
 import { SignOutButton } from '../components/buttons';
 import { prisma } from '@/lib/prisma';
 import { getServerSession } from 'next-auth';
+import { ProfileForm } from './ProfileForm';
 
 export default async function Dashboard() {
   const session = await getServerSession(authOptions);
@@ -11,7 +12,15 @@ export default async function Dashboard() {
     redirect('/api/auth/signin');
   }
 
-  const currentEmail = session?.user?.email!;
+  const currentEmail = session?.user?.name!;
 
-  const user = await prisma.user.findUnique({ where: { email: currentEmail } });
+  const user = await prisma.user.findUnique({
+    where: { email: currentEmail },
+  });
+  return (
+    <>
+      <h1>Dashboard</h1>
+      <ProfileForm user={user} />
+    </>
+  );
 }

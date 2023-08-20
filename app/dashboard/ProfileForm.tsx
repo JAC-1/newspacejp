@@ -1,15 +1,6 @@
 'use client';
 
-interface Props {
-  user: {
-    name: string;
-    age: number;
-    image: string;
-    bio: string;
-  };
-}
-
-export function ProfileForm({ user }: Props) {
+export function ProfileForm({ user }: any) {
   const updateUser = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
