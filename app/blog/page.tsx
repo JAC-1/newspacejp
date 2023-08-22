@@ -1,5 +1,4 @@
-import NewsCard from "@/app/components/NewsCard";
-import { json } from "stream/consumers";
+import NewsCard from '@/app/components/NewsCard';
 
 interface Article {
   author: string;
@@ -22,8 +21,8 @@ export default async function Article() {
   // );
   // const newsArticles = data.articles;
 
-  const { articles } = await fetch("http://localhost:3000/api/news").then(
-    (res) => res.json()
+  const { articles } = await fetch('http://localhost:3000/api/news').then(
+    (res) => res.json(),
   );
 
   return <NewsCard props={articles} />;
