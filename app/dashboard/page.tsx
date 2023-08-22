@@ -10,14 +10,14 @@ export default async function Dashboard() {
     redirect('/api/auth/signin');
   }
 
-  const currentEmail = session?.user?.name!;
+  const currentEmail = session?.user?.email!;
 
   const user = await prisma.user.findUnique({
     where: { email: currentEmail },
   });
   return (
     <>
-      <h1>Dashboard</h1>
+      <h1 className=''>Dashboard</h1>
       <ProfileForm user={user} />
     </>
   );

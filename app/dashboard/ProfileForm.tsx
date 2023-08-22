@@ -25,8 +25,8 @@ export function ProfileForm({ user }: any) {
   };
 
   return (
-    <div>
-      <form onSubmit={updateUser}>
+    <div className='w-full flex flex-col'>
+      <form onSubmit={updateUser} className=''>
         <label htmlFor='name'>Name</label>
         <input type='text' name='name' defaultValue={user?.name ?? ''} />
         <label htmlFor='bio'>Bio</label>

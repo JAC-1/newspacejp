@@ -4,6 +4,16 @@ import GithubProvider from 'next-auth/providers/github'; // Import providers you
 import { prisma } from '@/lib/prisma'; // import prisma module that we made a while ago
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 
+function generateRandomEmail(): string {
+  const numberArray = new Array();
+  for (let i = 0; i < 12; i++) {
+    const rngNumber = Math.floor(Math.random() * 10);
+    numberArray.push(rngNumber);
+  }
+  const domain = '@noreply.com';
+  return numberArray.join('') + domain;
+}
+
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma), // Set auth adapter to use PrismaAdapter
   providers: [
@@ -12,10 +22,37 @@ export const authOptions: NextAuthOptions = {
       clientSecret: process.env.GITHUB_SECRET!,
     }),
   ],
+  callbacks: {
+    //@ts-ignore
+    async signIn({ user, account, profile, email, credentials }) {
+      //@ts-ignore
+      console.log(user, account, profile, email);
+      if (!user.email) {
+        console.log(email);
+        const nullTemporaryEmail = generateRandomEmail();
+        user.email = nullTemporaryEmail;
+        // @ts-ignore
+        profile.email = nullTemporaryEmail;
+        console.log(user.email);
+      }
+      return true;
+    },
+  },
 };
 
 const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST }; // Necessary return to make AuthJs work
+
+// callbacks: {
+//     async signIn({ user, account, profile, email, credentials }: SignInCallbackParams) {
+//         // Check if the user is allowed to sign in
+//         if (user.email === 'admin@example.com') {
+//             return true;
+//         } else {
+//             return false;
+//         }
+//     }
+// }
 
 // import NextAuth from 'next-auth'
 // import Providers from 'next-auth/providers'
