@@ -1,6 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import BigButton from "./NewsCard/BigButton";
+import BackButton from "./NewsCard/BackButton";
 
 // https://newsapi.org/v2/top-headlines?country=jp&apiKey=b4a3e5178b6a48abbc9e71dcee047e96
 
@@ -14,6 +16,17 @@ export default function NewsCard({ props }: any) {
     localStorage.clear();
   };
 
+  const back = () => {
+    const newIdx = currentIndex - 1;
+    if (newIdx <= 0) {
+      return;
+    }
+    setCurrentIndex((p) => (p = newIdx));
+    localStorage.setItem("index", newIdx.toString());
+  };
+
+
+  // TODO: Add a congrats with confetii
   if (Number(currentIndex) == props.length) {
     localStorage.clear();
     return (
@@ -29,24 +42,53 @@ export default function NewsCard({ props }: any) {
     localStorage.setItem("index", (currentIndex + 1).toString());
   };
 
+  const saveArticle = () => {
+    console.log("Saved!");
+  };
+
   return (
-    <div>
-      <h1>{currentIndex}</h1>
-      <div id="heading">
-        <h1>{props[currentIndex].title}</h1>
-        <h4>{props[currentIndex].author}</h4>
-        <p>{props[currentIndex].publishedAt}</p>
-      </div>
-      <div id="description">
-        <h2>{props[currentIndex].description}</h2>
-      </div>
-      <div id="url">{props[currentIndex].url}</div>
-      <button
-        onClick={() => nextArticle()}
-        className="absolute bottom-0 right-0"
+    <div className="flex flex-col">
+      <div
+        id="news-container"
+        className=" flex flex-col justify-self-center max-w-lg w-auto h-auto mt-20"
       >
-        Next
-      </button>
+        <div id="heading" className="">
+          <BackButton handleClick={() => back()} />
+          <div id="name-and-source" className="pb-10 pt-5">
+            <h3 className="text-xl text-right">
+              {props[currentIndex].source.name}
+            </h3>
+            <h4 className="text-lg text-right">
+              <span className="text-xs pr-2">publisher:</span>
+              {props[currentIndex].author}
+            </h4>
+          </div>
+          <h1 className="text-xl  mb-10">{props[currentIndex].title}</h1>
+        </div>
+        <div id="content">{props[currentIndex]?.content ?? null}</div>
+        <div className="">{props[currentIndex]?.publishedAt ?? null}</div>
+        <a
+          href={props[currentIndex].url}
+          target="_blank"
+          className="text-xs self-center m-4 mt-5 py-1 px-4 bg-neutral-700 hover:bg-customPink  rounded-md"
+        >
+          Read More
+        </a>
+      </div>
+      <div className="w-auto flex flex-row gap-10 justify-center h-80 mt-auto">
+        <BigButton
+          title="Save"
+          arrow="&#x2193;"
+          handleClick={() => saveArticle()}
+          colorTrans="bg-yellow-200"
+        />
+        <BigButton
+          title="Next"
+          arrow="&#x2192;"
+          handleClick={() => nextArticle()}
+          colorTrans="bg-green-300"
+        />
+      </div>
     </div>
   );
 }

@@ -19,10 +19,10 @@ type Props = {
 export default function RootLayout({ children }: Props) {
   return (
     <AuthProvider>
-      <html lang="en">
-        <body className="bg-neutral-800">
+      <html lang="en" className="h-screen scroll-ms-6 ">
+        <body className="bg-neutral-800 h-full">
           <NavMenu />
-          <div id="container" className="text-neutral-200">
+          <div id="container" className="text-neutral-200 flex align-middle justify-center w-full h-full">
             {children}
           </div>
         </body>
