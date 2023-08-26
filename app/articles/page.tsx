@@ -1,4 +1,6 @@
-import NewsCard from "@/app/components/NewsCard";
+import NewsCard from "@/app/components/NewsCard/NewsCard";
+import SaveButton from "./SaveButton";
+import { prisma } from "@/lib/prisma";
 
 interface Article {
   author: string;
@@ -21,9 +23,15 @@ export default async function Article() {
   // );
   // const newsArticles = data.articles;
 
+  // awaiting a time out > call api > add data to db > access db > send articles to components
+
   const { articles } = await fetch("http://localhost:3000/api/news").then(
     (res) => res.json(),
   );
+
+  const saveArticle = () => {
+    console.log("Called from a server component");
+  };
 
   return <NewsCard props={articles} />;
 }

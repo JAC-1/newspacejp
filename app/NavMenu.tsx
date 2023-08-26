@@ -20,7 +20,7 @@ export default function () {
           <Link href={"/about"}>About</Link>
         </li>
         <li className="p-0 text-neutral-400 transition duration-500 hover:text-white ">
-          <Link href={"/blog"}>Blog</Link>
+          <Link href={"/articles"}>Articles</Link>
         </li>
         <li className="p-0 text-neutral-400 transition duration-500 hover:text-white ">
           <Link href={"/users"}>Users</Link>

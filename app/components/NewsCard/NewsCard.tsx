@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import BigButton from "./NewsCard/BigButton";
-import BackButton from "./NewsCard/BackButton";
+import { useState } from "react";
+import NextButton from "../NewsCard/NextButton";
+import SaveButton from "../NewsCard/SaveButton";
+import BackButton from "../NewsCard/BackButton";
 
 // https://newsapi.org/v2/top-headlines?country=jp&apiKey=b4a3e5178b6a48abbc9e71dcee047e96
 
@@ -18,9 +19,10 @@ export default function NewsCard({ props }: any) {
 
   const back = () => {
     const newIdx = currentIndex - 1;
-    if (newIdx <= 0) {
+    if (newIdx <= -1) {
       return;
     }
+    
     setCurrentIndex((p) => (p = newIdx));
     localStorage.setItem("index", newIdx.toString());
   };
@@ -76,17 +78,13 @@ export default function NewsCard({ props }: any) {
         </a>
       </div>
       <div className="w-auto flex flex-row gap-10 justify-center h-80 mt-auto">
-        <BigButton
-          title="Save"
+        <SaveButton
           arrow="&#x2193;"
-          handleClick={() => saveArticle()}
-          colorTrans="bg-yellow-200"
+          handleClick={() => {console.log()}}
         />
-        <BigButton
-          title="Next"
+        <NextButton
           arrow="&#x2192;"
           handleClick={() => nextArticle()}
-          colorTrans="bg-green-300"
         />
       </div>
     </div>
