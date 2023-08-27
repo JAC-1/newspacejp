@@ -68,10 +68,10 @@ model Follows {
 model Article {
   id String @id @default(cuid())
   title String
-  author String
-  content String
-  description String
-  publishedAt String
+  author String?
+  content String?
+  description String?
+  publishedAt String?
   sourceName String
   url String
   urlToImage String

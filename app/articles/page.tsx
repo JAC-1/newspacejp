@@ -1,5 +1,4 @@
 import NewsCard from "@/app/components/NewsCard/NewsCard";
-import SaveButton from "./SaveButton";
 import { prisma } from "@/lib/prisma";
 
 interface Article {
@@ -29,9 +28,6 @@ export default async function Article() {
     (res) => res.json(),
   );
 
-  const saveArticle = () => {
-    console.log("Called from a server component");
-  };
 
   return <NewsCard props={articles} />;
 }

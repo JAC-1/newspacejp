@@ -4,9 +4,6 @@ interface Params {
 }
 
 export default function BigButton({ arrow, handleClick }: Params) {
-
-
-  
   // TODO: Tailwind can't use literals with hover?
   return (
     <button

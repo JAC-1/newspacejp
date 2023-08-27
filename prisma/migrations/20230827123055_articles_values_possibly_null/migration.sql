@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE "Article" ALTER COLUMN "author" DROP NOT NULL,
+ALTER COLUMN "content" DROP NOT NULL,
+ALTER COLUMN "description" DROP NOT NULL,
+ALTER COLUMN "publishedAt" DROP NOT NULL;

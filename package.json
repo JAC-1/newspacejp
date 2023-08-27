@@ -6,7 +6,8 @@
     "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "schedule-job": "curl http://localhost:3000/api/newsApiSchedule"
   },
   "dependencies": {
     "@next-auth/prisma-adapter": "^1.0.7",
@@ -16,6 +17,7 @@
     "@types/react-dom": "18.2.7",
     "next": "13.4.13",
     "next-auth": "^4.23.0",
+    "node-schedule": "^2.1.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "typescript": "5.1.6"
