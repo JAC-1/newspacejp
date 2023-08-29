@@ -1,7 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { JsonQuery } from "@prisma/client/runtime/library";
-import schedule from 'node-schedule';
-
+import schedule from "node-schedule";
 
 interface ApiResponse {
   status: string;
@@ -23,7 +22,7 @@ interface ArticleData {
 async function queryNewsApi(): Promise<ApiResponse> {
   const key = process.env.NEWSAPIKEY; //
   const articles = await fetch(
-    `https://newsapi.org/v2/top-headlines?country=jp&apiKey=${key}`,
+    `https://newsapi.org/v2/top-headlines?country=jp&apiKey=${key}`
   ).then((res) => res.json);
 
   //@ts-ignore
@@ -31,31 +30,31 @@ async function queryNewsApi(): Promise<ApiResponse> {
 }
 
 async function populateDb(entries: Promise<ApiResponse>): Promise<void> {
-  // @ts-ignore
-  entries.articles.map( async article  => {
-    await prisma.article.create({
-      data: {
-        title: article.title,
-        author: article.author,
-        content: article.content ?? "None",
-        description: article.description,
-        publishedAt: article.publishedAt,
-        sourceName: article.source.name ?? "None",
-        url: article.url,
-        urlToImage: article.urlToImage,
-      }
-    })
-  })
-  return;
+  //@ts-ignore
+  const payLoad = (await entries).articles.reduce((acc, curVal) => {
+    const structure = {
+      title: curVal.title,
+      author: curVal.author,
+      content: curVal.content ?? "None",
+      description: curVal.description,
+      publishedAt: curVal.publishedAt,
+      sourceName: curVal.source.name ?? "None",
+      url: curVal.url,
+      urlToImage: curVal.urlToImage,
+    };
+    return [...acc, structure];
+  }, []);
+  
+  await prisma.article.updateMany({data: payLoad})
+  return
+
 }
 
-
-
 export const startScheduledJob = () => {
-  const articleData = queryNewsApi()
-  const job = schedule.scheduleJob('0 5 * * *', async () => {
-    await populateDb(articleData)
+  const articleData = queryNewsApi();
+  const job = schedule.scheduleJob("0 5 * * *", async () => {
+    await populateDb(articleData);
   });
 
-  console.log('Scheduled job started');
+  console.log("Scheduled job started");
 };

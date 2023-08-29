@@ -1,7 +1,7 @@
-import { getServerSession } from 'next-auth';
-import { authOptions } from '../auth/[...nextauth]/route';
-import { prisma } from '@/lib/prisma';
-import { NextRequest, NextResponse } from 'next/server';
+import { getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]/route";
+import { prisma } from "@/lib/prisma";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   const session = await getServerSession(authOptions);
@@ -23,7 +23,7 @@ export async function DELETE(req: NextRequest) {
   const session = await getServerSession(authOptions);
   const userEmail = session?.user?.email!;
   // Get the value from the url as a search param = pass in targetUserId in the url itself
-  const targetUserId = req.nextUrl.searchParams.get('targetUserId');
+  const targetUserId = req.nextUrl.searchParams.get("targetUserId");
 
   const currentUserId = await prisma.user
     .findUnique({ where: { email: userEmail } })
