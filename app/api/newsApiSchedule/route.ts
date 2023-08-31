@@ -3,10 +3,10 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    startScheduledJob();
+    await startScheduledJob();
     return NextResponse.json({ message: "Schedule Job Started" });
   } catch (e) {
-    // const errorMsg = e?.toString()
+    console.log(e)
     return NextResponse.json({ error: "An error occured" });
   }
 }
