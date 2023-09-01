@@ -18,3 +18,8 @@ I am following the [Fireship.io](fireship.io) Next 13 tutorial.
 
 Some of the code has unnecessary comments. These are learning notes. 
 
+## Future Implementations
+
+- Save your favorite news articles
+- hover or tap to look up unknown words
+- Bing news API / ai suggestions
