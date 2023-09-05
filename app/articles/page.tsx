@@ -1,14 +1,33 @@
 import NewsCard from "@/app/components/NewsCard/NewsCard";
 import { prisma } from "@/lib/prisma";
 
+interface Article {
+  author: string;
+  content: string;
+  description: string;
+  publishedAt: string;
+  source: {
+    id: null;
+    name: string;
+  };
+  title: string;
+  url: string;
+  urlToImage: string;
+}
+
 export default async function Article() {
-  const article  = await prisma.article.findFirst({where: {id: "cllymbhps0000tubokc1oro48"}})
-
-  console.log(article)
-  // const { articles } = await fetch("http://localhost:3000/api/news").then(
-  //   (res) => res.json(),
+  // const key = process.env.NEWSAPIKEY; //
+  // const data = await fetch(
+  //   `https://newsapi.org/v2/top-headlines?country=jp&apiKey=${key}`
   // );
+  // const newsArticles = data.articles;
+
+  // awaiting a time out > call api > add data to db > access db > send articles to components
+
+  const { articles } = await fetch("http://localhost:3000/api/news").then(
+    (res) => res.json(),
+  );
 
 
-  return <NewsCard props={article} />;
+  return <NewsCard props={articles} />;
 }
