@@ -4,13 +4,19 @@ import { useState } from "react";
 import NextButton from "../NewsCard/NextButton";
 import SaveButton from "../NewsCard/SaveButton";
 import BackButton from "../NewsCard/BackButton";
+import { Article } from "@prisma/client";
+import { Play } from "next/font/google";
 
 // https://newsapi.org/v2/top-headlines?country=jp&apiKey=b4a3e5178b6a48abbc9e71dcee047e96
 
 export default function NewsCard({ props }: any) {
-  const localIndex = localStorage.getItem("index");
-  const indexStart = localIndex ? Number(localIndex) : 0;
-  const [currentIndex, setCurrentIndex] = useState(indexStart);
+  let localIndex = 0;
+  try {
+    localIndex = Number(localStorage.getItem("index"))
+  } catch(e) {
+    console.log("No local storage. Staring at 0")
+  }
+  const [currentIndex, setCurrentIndex] = useState(localIndex);
 
   const restart = () => {
     setCurrentIndex((p) => (p = 0));
@@ -50,13 +56,13 @@ export default function NewsCard({ props }: any) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({articleId: id}),
+        body: JSON.stringify({ articleId: id }),
       });
-      console.log("Saved!")
+      console.log("Saved!");
     } catch (e) {
       console.log("An error has occured: ", e);
     } finally {
-      console.log(id)
+      console.log(id);
     }
   };
 
@@ -93,9 +99,7 @@ export default function NewsCard({ props }: any) {
       <div className="w-auto flex flex-row gap-10 justify-center h-80 mt-auto">
         <SaveButton
           arrow="&#x2193;"
-          handleClick={() => {
-            saveArticle(props.id);
-          }}
+          articleId={props.id}
         />
         <NextButton
           arrow="&#x2192;"
