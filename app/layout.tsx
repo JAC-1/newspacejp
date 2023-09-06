@@ -1,10 +1,13 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Roboto_Mono, Bebas_Neue } from "next/font/google";
 import NavMenu from "./NavMenu";
 import AuthProvider from "./AuthProvider";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const roboto = Roboto_Mono({ subsets: ["latin"], variable: "--font-roboto-mono" });
+
+const bebas = Bebas_Neue({weight: "400", variable: "--bebas-neue"});
 
 export const metadata: Metadata = {
   title: "News Space JP",

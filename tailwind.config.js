@@ -18,7 +18,14 @@ module.exports = {
       colors: {
         customPink: "#FF6095",
         customGrey: "#414141",
+        customWhite: "#FEF4FF"
       },
+      fontFamily: {
+        sans: ['var(--font-inter)'],
+        mono: ['var(--font-roboto-mono)'],
+        be: ['var(--bebas-neue)']
+      }
+
     },
   },
   plugins: [],
