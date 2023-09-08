@@ -10,6 +10,10 @@ module.exports = {
       width: {
         bigBW: "207px",
         backButtonW: "51px",
+        inputWidth: "48rem",
+        barInputHight: "6.5rem",
+        bioInputHight: "17rem",
+
       },
       height: {
         bigBH: '65px',
@@ -18,14 +22,18 @@ module.exports = {
       colors: {
         customPink: "#FF6095",
         customGrey: "#414141",
-        customWhite: "#FEF4FF"
+        customWhite: "#FEF4FF",
+        inputGrey: "#555555"
       },
       fontFamily: {
         sans: ['var(--font-inter)'],
         mono: ['var(--font-roboto-mono)'],
         be: ['var(--bebas-neue)']
+      },
+      fontSize: {
+        titleSize: "120px"
+        
       }
-
     },
   },
   plugins: [],
