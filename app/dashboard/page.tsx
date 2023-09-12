@@ -1,13 +1,13 @@
-import { redirect } from 'next/navigation';
-import { authOptions } from '../api/auth/[...nextauth]/route';
-import { prisma } from '@/lib/prisma';
-import { getServerSession } from 'next-auth';
-import { ProfileForm } from './ProfileForm';
+import { redirect } from "next/navigation";
+import { authOptions } from "../api/auth/[...nextauth]/route";
+import { prisma } from "@/lib/prisma";
+import { getServerSession } from "next-auth";
+import { ProfileForm } from "./ProfileForm";
 
 export default async function Dashboard() {
   const session = await getServerSession(authOptions);
   if (!session) {
-    redirect('/api/auth/signin');
+    redirect("/api/auth/signin");
   }
 
   const currentEmail = session?.user?.email!;
@@ -16,9 +16,9 @@ export default async function Dashboard() {
     where: { email: currentEmail },
   });
   return (
-    <>
-      <h1 className=''>Dashboard</h1>
+    <div className="flex flex-col w-full">
+      <div className="text-5xl mt-16 lg:ml-20 lg:self-start self-center">Dashboard</div>
       <ProfileForm user={user} />
-    </>
+    </div>
   );
 }
