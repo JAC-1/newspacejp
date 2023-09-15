@@ -65,19 +65,19 @@ export default function NewsCard({ props }: any) {
               {props[currentIndex].author}
             </h4>
           </div>
-          <h1 className="text-xl  mb-10">{props[currentIndex].title}</h1>
+          <h1 className="text-sans text-3xl  mb-10">{props[currentIndex].title}</h1>
         </div>
-        <div id="content">{props[currentIndex]?.content ?? null}</div>
+        <div id="content" className="">{props[currentIndex]?.content ?? null}</div>
         <div className="">{props[currentIndex]?.publishedAt ?? null}</div>
         <a
           href={props[currentIndex].url}
           target="_blank"
-          className="text-xs self-center m-4 mt-5 py-1 px-4 bg-neutral-700 hover:bg-customPink  rounded-md"
+          className="text-md self-center m-4 mt-12 py-1 px-4 bg-neutral-700 hover:bg-customPink  rounded-md"
         >
           Read More
         </a>
       </div>
-      <div className="w-auto flex flex-row gap-10 justify-center h-80 mt-auto">
+      <div className="w-auto flex flex-row md:gap-10 gap-5 justify-center h-80 mt-12">
         <SaveButton
           arrow="&#x2193;"
           handleClick={() => {console.log()}}

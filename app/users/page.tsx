@@ -103,8 +103,8 @@ export default async function Users() {
 
   return (
     <div>
-      <h1 className='text-6xl w-full py-10'>Users</h1>
-      <div className={`text-${bebas.variable} py-4 grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-col-4`}>
+      <h1 className="font-be text-7xl text-titleSize py-10">Users</h1>
+      <div className="py-4 grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-col-4">
         {fakeUsers.map((user) => {
           return <UserCard key={user.id} {...user} />; // populate page with UserCards
         })}

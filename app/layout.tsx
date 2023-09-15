@@ -5,8 +5,7 @@ import NavMenu from "./NavMenu";
 import AuthProvider from "./AuthProvider";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const roboto = Roboto_Mono({ subsets: ["latin"], variable: "--font-roboto-mono" });
-
+const roboto_mono = Roboto_Mono({ subsets: ["latin"], variable: "--font-roboto-mono" });
 const bebas = Bebas_Neue({weight: "400", variable: "--bebas-neue"});
 
 export const metadata: Metadata = {
@@ -22,7 +21,7 @@ type Props = {
 export default function RootLayout({ children }: Props) {
   return (
     <AuthProvider>
-      <html lang="en" className="h-screen scroll-ms-6 ">
+      <html lang="en" className={`${bebas.variable} ${inter.variable} ${roboto_mono.variable} h-screen scroll-ms-6`}>
         <body className="bg-neutral-800 h-full">
           <NavMenu />
           <div id="container" className="text-neutral-200 flex align-middle justify-center w-full h-full">

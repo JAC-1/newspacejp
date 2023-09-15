@@ -9,6 +9,7 @@ module.exports = {
     extend: {
       width: {
         bigBW: "207px",
+        smBW: "120px",
         backButtonW: "51px",
         inputWidth: "48rem",
         barInputHight: "6.5rem",
@@ -18,6 +19,7 @@ module.exports = {
       height: {
         bigBH: '65px',
         backButtonH: '25px',
+        smBH: '50px',
       }, 
       colors: {
         customPink: "#FF6095",

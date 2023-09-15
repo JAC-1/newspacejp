@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function Blog() {
   return (
     <div>
-      <h1>About Us</h1>
+      <h1 className='font-be '>About Us</h1>
       <p>We bring the world together!</p>
     </div>
   );
