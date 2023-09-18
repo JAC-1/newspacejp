@@ -22,3 +22,9 @@ export default async function Dashboard() {
     </div>
   );
 }
+
+// TODO:
+// - Form data -> stateful object
+// - button onclick -> send form data object
+// - Move fetch in component to server side
+// - Server comp. state -> Profileform -> input comp.
