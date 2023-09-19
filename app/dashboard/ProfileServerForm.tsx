@@ -1,44 +1,50 @@
-"use client";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../api/auth/[...nextauth]/route";
+import { redirect } from "next/navigation";
+import { prisma } from "@/lib/prisma";
 
-import { revalidatePath } from "next/cache";
+export default function ServerForm() {
+  
+  const userSession = async () => {
+    "use server"
+    const session = await getServerSession(authOptions);
+    if (!session) {
+      redirect("/api/auth/signin");
+    }
+    const currentEmail = session?.user?.email!;
+    return {session: {session}, email: {currentEmail}}
+  }
 
-export function ProfileForm({ user }: any) {
-  const updateUser = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const userData = async () => {
+    "use server";
+    const userSessionInfo = await userSession()
 
-    const formData = new FormData(e.currentTarget);
+    const user = await prisma.user.findUnique({where: {email: userSessionInfo.email.currentEmail}})
 
-    const body = {
-      name: formData.get("name"),
-      age: formData.get("age"),
-      image: formData.get("image"),
-      bio: formData.get("bio"),
+    return user
+  }
+  
+  async function update(formData: FormData) {
+    "use server";
+
+    const user = await userSession()
+
+    const data = {
+      name: formData.get("name")?.toString(),
+      age: Number(formData.get("age")) ?? null,
+      image: formData.get("image")?.toString(),
+      bio: formData.get("bio")?.toString(),
     };
 
-    try {
-      const res = await fetch("/api/users", {
-        method: "PUT",
-        body: JSON.stringify(body),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      if (!res.ok) {
-        throw new Error(`Request failed with status: ${res.status}`);
-      }
-      await res.json();
-      revalidatePath("/api/users")
-      console.log(body);
-    } catch (error) {
-      console.log(body)
-      console.log(error);
-    }
-  };
+    await prisma.user.update({
+      where: { email: user.email.currentEmail },
+      data,
+    });
+  }
 
   return (
     <form
-      onSubmit={updateUser}
+      action={update}
       className="md:my-20 my-10 text-white rounded flex flex-col "
     >
       <div className="flex flex-row  w-full justify-between" id="name-id">
@@ -52,7 +58,7 @@ export function ProfileForm({ user }: any) {
                 className="md:text-5xl text-2xl  h-12 md:h-20 rounded-sm text-center bg-transparent  md:py-4 md:px-6  w-full"
                 type="text"
                 name="name"
-                defaultValue={user?.name ?? ""}
+                defaultValue={userData?.name ?? ""}
               />
             </div>
           </div>
@@ -72,7 +78,7 @@ export function ProfileForm({ user }: any) {
                 className="md:text-3xl text-2xl md:h-20 h-12 text-center rounded-sm justify-self-center bg-transparent md:p-7 w-full"
                 type="text"
                 name="age"
-                defaultValue={user?.name ?? ""}
+                defaultValue={userData?.name ?? ""}
               />
             </div>
           </div>
@@ -86,7 +92,7 @@ export function ProfileForm({ user }: any) {
           name="bio"
           cols={60}
           rows={5}
-          defaultValue={user?.bio ?? ""}
+          defaultValue={userData?.bio ?? ""}
           className="text-2xl rounded-sm w-full bg-transparent p-7"
         >
         </textarea>
@@ -100,7 +106,7 @@ export function ProfileForm({ user }: any) {
             className="text-2xl rounded-sm w-full bg-transparent p-7"
             type="text"
             name="image"
-            defaultValue={user?.image ?? ""}
+            defaultValue={userData?.image ?? ""}
           />
         </div>
       </div>
@@ -113,8 +119,3 @@ export function ProfileForm({ user }: any) {
     </form>
   );
 }
-
-// TODO:
-//    - Move Age next to Name
-//    - Profile image upload has an image previewer (placeholder for now) with an upload underneath, centered
-//    - Bigger save button.

@@ -10,7 +10,7 @@ export async function GET() {
 
 // Make a Post to update prisma.user using the users current email who is currently authenticated
 
-export async function POST(req: Request) {
+export async function PUT(req: Request) {
   const session = await getServerSession(authOptions);
   const currentUserEmail = session?.user?.email!;
 

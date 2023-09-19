@@ -6,7 +6,7 @@ import AuthProvider from "./AuthProvider";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const roboto_mono = Roboto_Mono({ subsets: ["latin"], variable: "--font-roboto-mono" });
-const bebas = Bebas_Neue({weight: "400", variable: "--bebas-neue"});
+const bebas = Bebas_Neue({weight: "400", variable: "--bebas-neue", preload: false});
 
 export const metadata: Metadata = {
   title: "News Space JP",

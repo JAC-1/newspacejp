@@ -2,9 +2,7 @@ import { prisma } from '@/lib/prisma';
 import UserCard from '../components/UserCard/UserCard';
 import styles from './page.module.css';
 import { User } from '@prisma/client';
-import { Inter, Roboto_Mono, Bebas_Neue } from "next/font/google";
 
-const bebas = Bebas_Neue({weight: "400", variable: "--bebas-neue"});
 
 const fakeUsers: User[] = [
   {
