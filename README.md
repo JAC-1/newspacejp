@@ -6,7 +6,7 @@ This is a Nextjs 13 learning project. The user will be able to make an account, 
 
 ## APIs Used
 
-This app will use [NewsAPI](https://newsapi.org).
+This app will use [NewsAPI](https://newsapi.org) and [jisho.org's](https://jisho.org/api/v1/search/words?keyword=house) kanji dictonary api.
 
 ## What am I learning from? 
 

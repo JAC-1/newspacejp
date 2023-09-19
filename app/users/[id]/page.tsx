@@ -16,7 +16,7 @@ export default async function UserPage({ params }: Props) {
   const { name, bio, image } = user ?? {};
   return (
     <div>
-      <h1 className={styles.h1}>{name}</h1>
+      <h1 className="font-be text-7xl text-titleSize px-16 py-10">{name}</h1>
       <img
         width={300}
         src={image ?? '/mememan.webp'}

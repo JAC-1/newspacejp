@@ -15,10 +15,13 @@ export default async function Dashboard() {
   const user = await prisma.user.findUnique({
     where: { email: currentEmail },
   });
+
   return (
     <div className="flex flex-col w-full">
-      <div className="text-5xl mt-16 lg:ml-20 lg:self-start self-center">Dashboard</div>
-      <ProfileForm user={user} />
+      <h1 className="font-be text-7xl text-titleSize md:px-16 text-center pt-5 md:py-10">Profile</h1>
+      <div className="w-2/3 max-w-4xl self-center flex-1">
+        <ProfileForm user={user} className="self-center" />
+      </div>
     </div>
   );
 }
