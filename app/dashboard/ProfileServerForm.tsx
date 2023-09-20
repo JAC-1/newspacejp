@@ -2,32 +2,19 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
+import { revalidatePath } from "next/cache";
 
-export default function ServerForm() {
-  
-  const userSession = async () => {
-    "use server"
-    const session = await getServerSession(authOptions);
-    if (!session) {
-      redirect("/api/auth/signin");
-    }
-    const currentEmail = session?.user?.email!;
-    return {session: {session}, email: {currentEmail}}
+export default async function ServerForm() {
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    redirect("/api/auth/signin");
   }
+  const currentEmail = session?.user?.email!;
 
-  const userData = async () => {
+  const user = await prisma.user.findUnique({ where: { email: currentEmail } });
+
+  async function updateUser(formData: FormData) {
     "use server";
-    const userSessionInfo = await userSession()
-
-    const user = await prisma.user.findUnique({where: {email: userSessionInfo.email.currentEmail}})
-
-    return user
-  }
-  
-  async function update(formData: FormData) {
-    "use server";
-
-    const user = await userSession()
 
     const data = {
       name: formData.get("name")?.toString(),
@@ -37,14 +24,17 @@ export default function ServerForm() {
     };
 
     await prisma.user.update({
-      where: { email: user.email.currentEmail },
+      where: { email: currentEmail },
       data,
     });
+
+    // Revalidate
+    revalidatePath("/dashboard");
   }
 
   return (
     <form
-      action={update}
+      action={updateUser}
       className="md:my-20 my-10 text-white rounded flex flex-col "
     >
       <div className="flex flex-row  w-full justify-between" id="name-id">
@@ -58,7 +48,7 @@ export default function ServerForm() {
                 className="md:text-5xl text-2xl  h-12 md:h-20 rounded-sm text-center bg-transparent  md:py-4 md:px-6  w-full"
                 type="text"
                 name="name"
-                defaultValue={userData?.name ?? ""}
+                defaultValue={user?.name ?? ""}
               />
             </div>
           </div>
@@ -78,7 +68,7 @@ export default function ServerForm() {
                 className="md:text-3xl text-2xl md:h-20 h-12 text-center rounded-sm justify-self-center bg-transparent md:p-7 w-full"
                 type="text"
                 name="age"
-                defaultValue={userData?.name ?? ""}
+                defaultValue={user?.age ?? ""}
               />
             </div>
           </div>
@@ -92,10 +82,9 @@ export default function ServerForm() {
           name="bio"
           cols={60}
           rows={5}
-          defaultValue={userData?.bio ?? ""}
+          defaultValue={user?.bio ?? ""}
           className="text-2xl rounded-sm w-full bg-transparent p-7"
-        >
-        </textarea>
+        ></textarea>
       </div>
       <div className="py-10" id="image">
         <label htmlFor="image" className="block md:text-5xl text-3xl py-5">
@@ -106,7 +95,7 @@ export default function ServerForm() {
             className="text-2xl rounded-sm w-full bg-transparent p-7"
             type="text"
             name="image"
-            defaultValue={userData?.image ?? ""}
+            defaultValue={user?.image ?? ""}
           />
         </div>
       </div>
