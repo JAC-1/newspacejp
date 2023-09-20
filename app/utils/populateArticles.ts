@@ -4,7 +4,7 @@ import { JsonQuery } from "@prisma/client/runtime/library";
 interface ApiResponse {
   status: string;
   totalResults: number;
-  value: ArticleData[];
+  articles: ArticleData[];
 }
 
 interface ArticleData {
@@ -19,25 +19,18 @@ interface ArticleData {
 }
 
 async function queryNewsApi(): Promise<ApiResponse> {
-  const key = process.env.BINGNEWSKEY;
-  const japanese = "ja-jp";
-  const unitedStates = "en-us";
-  const url = `https://api.bing.microsoft.com/v7.0/news?mkt=${japanese}&category=sports`;
-  const articles = await fetch(url, {
-    headers: {
-      "Ocp-Apim-Subscription-Key": "fef3197abc154e18a28c68c024073023",
-    },
-  }).then((res) => res.json());
+  const country = "jp"
+const key = process.env.NEWSAPI_KEY; //
+  const articles = await fetch(
+    `https://newsapi.org/v2/top-headlines?country=${country}&apiKey=${key}`,
+  ).then((res) => res.json());
 
   //@ts-ignore
   return articles as ApiResponse;
 }
-// TODO:
-// - Fix interface and map to reflect new api (bing)
-// - We use bing because it has less bs in the headers and such
 
 async function populateDb(entries: ApiResponse): Promise<void> {
-  const payLoad = entries.value
+  const payLoad = entries.articles
     .filter(
       (article) =>
         article.title &&

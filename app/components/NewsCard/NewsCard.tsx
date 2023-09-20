@@ -58,7 +58,7 @@ export default function NewsCard({ props }: any) {
           <BackButton handleClick={() => back()} />
           <div id="name-and-source" className="pb-10 pt-5">
             <h3 className="text-xl text-right">
-              {props[currentIndex].source.name}
+              {props[currentIndex].sourceName}
             </h3>
             <h4 className="text-lg text-right">
               <span className="text-xs pr-2">publisher:</span>
@@ -67,7 +67,6 @@ export default function NewsCard({ props }: any) {
           </div>
           <h1 className="text-sans text-3xl  mb-10">{props[currentIndex].title}</h1>
         </div>
-        <div id="content" className="">{props[currentIndex]?.content ?? null}</div>
         <div className="">{props[currentIndex]?.publishedAt ?? null}</div>
         <a
           href={props[currentIndex].url}
