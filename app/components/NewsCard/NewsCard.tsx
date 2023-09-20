@@ -60,14 +60,14 @@ export default function NewsCard({ props }: any) {
             <h3 className="text-xl text-right">
               {props[currentIndex].sourceName}
             </h3>
-            <h4 className="text-lg text-right">
+            <h4 className="text-md text-right">
               <span className="text-xs pr-2">publisher:</span>
-              {props[currentIndex].author}
+              {props[currentIndex].author ?? "N/A"}
             </h4>
           </div>
           <h1 className="text-sans text-3xl  mb-10">{props[currentIndex].title}</h1>
         </div>
-        <div className="">{props[currentIndex]?.publishedAt ?? null}</div>
+        <div className="text-right">{props[currentIndex]?.publishedAt.slice(0, 10) ?? null}</div>
         <a
           href={props[currentIndex].url}
           target="_blank"
@@ -79,7 +79,7 @@ export default function NewsCard({ props }: any) {
       <div className="w-auto flex flex-row md:gap-10 gap-5 justify-center h-80 mt-12">
         <SaveButton
           arrow="&#x2193;"
-          handleClick={() => {console.log()}}
+          articleId={props[currentIndex].id}
         />
         <NextButton
           arrow="&#x2192;"
