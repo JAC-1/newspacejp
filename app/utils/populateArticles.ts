@@ -32,6 +32,9 @@ async function queryNewsApi(): Promise<ApiResponse> {
   //@ts-ignore
   return articles as ApiResponse;
 }
+// TODO:
+// - Fix interface and map to reflect new api (bing)
+// - We use bing because it has less bs in the headers and such
 
 async function populateDb(entries: ApiResponse): Promise<void> {
   const payLoad = entries.value
