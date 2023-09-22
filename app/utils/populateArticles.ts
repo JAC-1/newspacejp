@@ -1,5 +1,4 @@
 import { prisma } from "@/lib/prisma";
-import { JsonQuery } from "@prisma/client/runtime/library";
 
 interface ApiResponse {
   status: string;
@@ -20,12 +19,11 @@ interface ArticleData {
 
 async function queryNewsApi(): Promise<ApiResponse> {
   const country = "jp"
-const key = process.env.NEWSAPI_KEY; //
+const key = process.env.NEWSAPI_KEY;
   const articles = await fetch(
     `https://newsapi.org/v2/top-headlines?country=${country}&apiKey=${key}`,
-  ).then((res) => res.json());
-
-  //@ts-ignore
+    {cache: 'no-store'}  ).then((res) => res.json());
+// Make sure it doesn't cache the response
   return articles as ApiResponse;
 }
 
@@ -48,7 +46,8 @@ async function populateDb(entries: ApiResponse): Promise<void> {
       url: article.url,
       urlToImage: article.urlToImage,
     }));
-  console.log(payLoad.slice(0, 10));
+  // console.log(payLoad.slice(0, 10));
+  console.log(payLoad);
   await prisma.article.createMany({ data: payLoad });
   return;
 }
@@ -59,8 +58,7 @@ export const startScheduledJob = async () => {
   //   await populateDb(articleData);
   // });
   // @ts-ignore
-  await populateDb(articleData);
-  console.log(articleData);
+  // await populateDb(articleData);
+  return articleData
 
-  console.log("Scheduled job started");
 };

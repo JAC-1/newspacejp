@@ -9,7 +9,7 @@ export default function NavLinks() {
   const { status } = useSession({
     required: true,
     onUnauthenticated() {
-      return <SignInButton />;
+      return ;
     },
   });
   return (
@@ -18,7 +18,7 @@ export default function NavLinks() {
         <Link href={"/about"}>About</Link>
       </li>
       {status === "authenticated"
-        ? <LoggedInLinks handleClick={() => {}} />
+        ? <LoggedInLinks mobile={false} handleClick={() => {}}/>
         : <div></div>}
       <li className="text-xl p-0 text-neutral-400 transition duration-500 hover:text-white ">
         <SignInButton />

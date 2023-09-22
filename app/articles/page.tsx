@@ -5,11 +5,14 @@ import dateConstructor from "../utils/dateConstructor";
 
 export default async function Article() {
   
-  const dateToday = dateConstructor()
+  const last5DatesArray: string[] = dateConstructor()
+  const today = last5DatesArray[0];
+  const yesterday = last5DatesArray[1];
+  const twodaysago = last5DatesArray[2];
 
 
   const articles = await prisma.article.findMany({
-    where: { publishedAt: { contains: dateToday } },
+    where: { publishedAt: { contains: today || yesterday || twodaysago } },
     take: 10,
   });
 

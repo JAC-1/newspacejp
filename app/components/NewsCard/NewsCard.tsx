@@ -22,31 +22,25 @@ export default function NewsCard({ props }: any) {
     if (newIdx <= -1) {
       return;
     }
-    
+
     setCurrentIndex((p) => (p = newIdx));
     localStorage.setItem("index", newIdx.toString());
   };
-
 
   // TODO: Add a congrats with confetii
   if (Number(currentIndex) == props.length) {
     localStorage.clear();
     return (
-      <div className="flex flex-col justify-center items-center">
-      <h1 className="text-3xl text-center">You've read all the articles!</h1>
-      <button onClick={() => restart()} className="text-md self-center m-4 mt-12 py-1 px-4 bg-neutral-700 hover:bg-customPink  rounded-md"> Restart </button> 
-      </div>
-      
+      <>
+        <h1>End of articles</h1>
+        <button onClick={() => restart()}>Restart</button>
+      </>
     );
   }
 
   const nextArticle = () => {
     setCurrentIndex((prevIndex) => Number(prevIndex) + 1);
     localStorage.setItem("index", (currentIndex + 1).toString());
-  };
-
-  const saveArticle = () => {
-    console.log("Saved!");
   };
 
   return (
@@ -66,11 +60,20 @@ export default function NewsCard({ props }: any) {
               {props[currentIndex].author}
             </h4>
           </div>
-          <h1 className="text-sans text-3xl  mb-10">{props[currentIndex].title}</h1>
-        >
-          Read More
-        </a>
+          <h1 className="text-sans text-3xl  mb-10">
+            {props[currentIndex].title}
+          </h1>
+        </div>
       </div>
+
+      <div className="">{props[currentIndex]?.publishedAt ?? null}</div>
+      <a
+        href={props[currentIndex].url}
+        target="_blank"
+        className="text-md self-center m-4 mt-12 py-1 px-4 bg-neutral-700 hover:bg-customPink  rounded-md"
+      >
+        Read More
+      </a>
       <div className="w-auto flex flex-row md:gap-10 gap-5 justify-center h-80 mt-12">
         <SaveButton
           arrow="&#x2193;"
