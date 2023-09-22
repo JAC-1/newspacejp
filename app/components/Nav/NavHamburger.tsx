@@ -1,12 +1,22 @@
 import { SignInButton } from "../buttons";
 import Link from "next/link";
+import LoggedInLinks from "./LoggedInLinks";
+import { useSession } from "next-auth/react";
 
 interface Params {
   showMenu: boolean;
   handleClick: () => void;
 }
 
-export default function NavHamburger({ showMenu, handleClick }: Params) {
+export default function NavHamburger(
+  { showMenu, handleClick }: Params,
+) {
+  const { status } = useSession( {
+    required: true,
+    onUnauthenticated() {
+      return <SignInButton />;
+    }
+  });
   return (
     <div>
       {showMenu
@@ -16,15 +26,11 @@ export default function NavHamburger({ showMenu, handleClick }: Params) {
               <li className="p-2">
                 <Link href={"/about"} onClick={handleClick}>About</Link>
               </li>
-              <li className="p-2">
-                <Link href={"/articles"} onClick={handleClick}>Articles</Link>
-              </li>
-              <li className="p-2">
-                <Link href={"/users"} onClick={handleClick}>Users</Link>
-              </li>
-              <li className="p-2">
-                <Link href={"/dashboard"} onClick={handleClick}>Dashboard</Link>
-              </li>
+
+              {status === "authenticated"
+                ? <LoggedInLinks handleClick={handleClick} />
+                : <div></div>}
+
               <li className="p-2">
                 <SignInButton />
               </li>

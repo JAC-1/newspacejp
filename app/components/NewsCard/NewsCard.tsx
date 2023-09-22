@@ -32,10 +32,11 @@ export default function NewsCard({ props }: any) {
   if (Number(currentIndex) == props.length) {
     localStorage.clear();
     return (
-      <>
-        <h1>End of articles</h1>
-        <button onClick={() => restart()}>Restart</button>
-      </>
+      <div className="flex flex-col justify-center items-center">
+      <h1 className="text-3xl text-center">You've read all the articles!</h1>
+      <button onClick={() => restart()} className="text-md self-center m-4 mt-12 py-1 px-4 bg-neutral-700 hover:bg-customPink  rounded-md"> Restart </button> 
+      </div>
+      
     );
   }
 
@@ -60,18 +61,12 @@ export default function NewsCard({ props }: any) {
             <h3 className="text-xl text-right">
               {props[currentIndex].sourceName}
             </h3>
-            <h4 className="text-md text-right">
+            <h4 className="text-lg text-right">
               <span className="text-xs pr-2">publisher:</span>
-              {props[currentIndex].author ?? "N/A"}
+              {props[currentIndex].author}
             </h4>
           </div>
           <h1 className="text-sans text-3xl  mb-10">{props[currentIndex].title}</h1>
-        </div>
-        <div className="text-right">{props[currentIndex]?.publishedAt.slice(0, 10) ?? null}</div>
-        <a
-          href={props[currentIndex].url}
-          target="_blank"
-          className="text-md self-center m-4 mt-12 py-1 px-4 bg-neutral-700 hover:bg-customPink  rounded-md"
         >
           Read More
         </a>

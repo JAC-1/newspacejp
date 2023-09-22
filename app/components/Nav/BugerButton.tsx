@@ -4,14 +4,18 @@ import { useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import NavHamburger from "./NavHamburger";
 
+interface Params {
+  loggedIn: boolean;
+}
+
 export default function BugerButton() {
   const [showBurgerMenu, setShowBurgerMenu] = useState(false);
   const handleBugerButton = () => {
-    setShowBurgerMenu(prev => !prev)
+    setShowBurgerMenu((prev) => !prev);
   };
   const closeMenu = () => {
-    setShowBurgerMenu(false)
-  }
+    setShowBurgerMenu(false);
+  };
   return (
     <div>
       <AiOutlineMenu
@@ -21,7 +25,7 @@ export default function BugerButton() {
         size={42}
       />
 
-      <NavHamburger handleClick={closeMenu} showMenu={showBurgerMenu}/> 
+      <NavHamburger handleClick={closeMenu} showMenu={showBurgerMenu} />
     </div>
   );
 }
