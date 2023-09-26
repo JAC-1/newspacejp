@@ -28,6 +28,7 @@ export default function NewsCard({ props }: any) {
   };
 
   // TODO: Add a congrats with confetii
+  // TODO: Display pictures
   if (Number(currentIndex) == props.length) {
     localStorage.clear();
     return (
@@ -75,14 +76,8 @@ export default function NewsCard({ props }: any) {
         Read More
       </a>
       <div className="w-auto flex flex-row md:gap-10 gap-5 justify-center h-80 mt-12">
-        <SaveButton
-          arrow="&#x2193;"
-          articleId={props[currentIndex].id}
-        />
-        <NextButton
-          arrow="&#x2192;"
-          handleClick={() => nextArticle()}
-        />
+        <SaveButton arrow="&#x2193;" articleId={props[currentIndex].id} />
+        <NextButton arrow="&#x2192;" handleClick={() => nextArticle()} />
       </div>
     </div>
   );

@@ -1,8 +1,9 @@
-import { prisma } from '@/lib/prisma';
-import UserCard from '../components/UserCard/UserCard';
-import styles from './page.module.css';
-import { User } from '@prisma/client';
+import { prisma } from "@/lib/prisma";
+import UserCard from "../components/UserCard/UserCard";
+import styles from "./page.module.css";
+import { User } from "@prisma/client";
 
+// TODO : Change this back to the original once the database is set up
 
 const fakeUsers: User[] = [
   {
@@ -65,37 +66,37 @@ const fakeUsers: User[] = [
     bio: "I love burgers",
     age: 26,
     email: "isabellaburgers@nit.ac.jp",
-    emailVerified:null,
-   image:null
-},
-{
-   id:"1238", 
-   name:"William", 
-   bio:"I love steak", 
-   age :33, 
-   email:"williamsteak@nit.ac.jp", 
-   emailVerified:null, 
-   image:null
-},
-{
-   id:"1239", 
-   name:"Mia", 
-   bio:"I love curry", 
-   age :31, 
-   email:"miacurry@nit.ac.jp", 
-   emailVerified:null, 
-   image:null
-},
-{
-   id:"1240", 
-   name:"James", 
-   bio:"I love fried chicken", 
-   age :34, 
-   email:"jameschicken@nit.ac.jp", 
-   emailVerified:null, 
-   image:null
-}
-]
+    emailVerified: null,
+    image: null,
+  },
+  {
+    id: "1238",
+    name: "William",
+    bio: "I love steak",
+    age: 33,
+    email: "williamsteak@nit.ac.jp",
+    emailVerified: null,
+    image: null,
+  },
+  {
+    id: "1239",
+    name: "Mia",
+    bio: "I love curry",
+    age: 31,
+    email: "miacurry@nit.ac.jp",
+    emailVerified: null,
+    image: null,
+  },
+  {
+    id: "1240",
+    name: "James",
+    bio: "I love fried chicken",
+    age: 34,
+    email: "jameschicken@nit.ac.jp",
+    emailVerified: null,
+    image: null,
+  },
+];
 export default async function Users() {
   // const users = await prisma.user.findMany();
 

@@ -1,8 +1,8 @@
-import NextAuth from 'next-auth';
-import type { NextAuthOptions } from 'next-auth';
-import GithubProvider from 'next-auth/providers/github'; // Import providers you wish to use to authenticate.
-import { prisma } from '@/lib/prisma'; // import prisma module that we made a while ago
-import { PrismaAdapter } from '@next-auth/prisma-adapter';
+import NextAuth from "next-auth";
+import type { NextAuthOptions } from "next-auth";
+import GithubProvider from "next-auth/providers/github"; // Import providers you wish to use to authenticate.
+import { prisma } from "@/lib/prisma"; // import prisma module that we made a while ago
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
 
 function generateRandomEmail(): string {
   const numberArray = new Array();
@@ -10,13 +10,14 @@ function generateRandomEmail(): string {
     const rngNumber = Math.floor(Math.random() * 10);
     numberArray.push(rngNumber);
   }
-  const domain = '@noreply.com';
-  return numberArray.join('') + domain;
+  const domain = "@noreply.com";
+  return numberArray.join("") + domain;
 }
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma), // Set auth adapter to use PrismaAdapter
   providers: [
+    // TODO : Add more providers like google and line
     GithubProvider({
       clientId: process.env.GITHUB_ID!, // These are stored in the root .env file
       clientSecret: process.env.GITHUB_SECRET!,
