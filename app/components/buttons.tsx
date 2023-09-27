@@ -8,6 +8,8 @@ import { useState, useEffect } from "react";
 export function SignInButton() {
   const [showImage, setShowImage] = useState(false);
 
+  // TODO : Prevent the green success notification from showing up when you refresh the page, or open the hamburger menu.
+
   const { data: session, status } = useSession();
 
   useEffect(() => {

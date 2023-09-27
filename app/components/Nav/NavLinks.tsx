@@ -9,17 +9,15 @@ export default function NavLinks() {
   const { status } = useSession({
     required: true,
     onUnauthenticated() {
-      return ;
+      return;
     },
   });
+
+  const authenticated: boolean = status == "authenticated" ? true : false;
+
   return (
     <ul className="hidden md:flex items-center justify-between flex-row gap-5 pr-6 text-neutral-300 ">
-      <li className="text-xl p-0 text-neutral-400 transition duration-500 hover:text-white ">
-        <Link href={"/about"}>About</Link>
-      </li>
-      {status === "authenticated"
-        ? <LoggedInLinks mobile={false} handleClick={() => {}}/>
-        : <div></div>}
+      <LoggedInLinks authenticated={authenticated} />
       <li className="text-xl p-0 text-neutral-400 transition duration-500 hover:text-white ">
         <SignInButton />
       </li>
