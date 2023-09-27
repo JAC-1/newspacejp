@@ -1,8 +1,9 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter, Roboto_Mono, Bebas_Neue } from "next/font/google";
+import { Bebas_Neue, Inter, Roboto_Mono } from "next/font/google";
 import NavMenu from "./NavMenu";
 import AuthProvider from "./AuthProvider";
+import Footer from "./components/Footer/Footer";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const roboto_mono = Roboto_Mono({
@@ -25,7 +26,6 @@ type Props = {
   children: React.ReactNode;
 };
 
-// TODO : Add footer with copywrite info
 
 export default function RootLayout({ children }: Props) {
   return (
@@ -42,6 +42,7 @@ export default function RootLayout({ children }: Props) {
           >
             {children}
           </div>
+          <Footer />
         </body>
       </html>
     </AuthProvider>
