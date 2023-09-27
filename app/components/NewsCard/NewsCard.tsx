@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import NextButton from "../NewsCard/NextButton";
 import SaveButton from "../NewsCard/SaveButton";
 import BackButton from "../NewsCard/BackButton";
@@ -8,50 +8,28 @@ import BackButton from "../NewsCard/BackButton";
 // https://newsapi.org/v2/top-headlines?country=jp&apiKey=b4a3e5178b6a48abbc9e71dcee047e96
 
 export default function NewsCard({ props }: any) {
-  const localIndex = localStorage.getItem("index");
-  const indexStart = localIndex ? Number(localIndex) : 0;
-  const [currentIndex, setCurrentIndex] = useState(indexStart);
-
-  const restart = () => {
-    setCurrentIndex((p) => (p = 0));
-    localStorage.clear();
-  };
-
-  const back = () => {
-    const newIdx = currentIndex - 1;
-    if (newIdx <= -1) {
-      return;
-    }
-
-    setCurrentIndex((p) => (p = newIdx));
-    localStorage.setItem("index", newIdx.toString());
-  };
-
-  // TODO: Add a congrats with confetii
-  // TODO: Display pictures
-  if (Number(currentIndex) == props.length) {
-    localStorage.clear();
-    return (
-      <>
-        <h1>End of articles</h1>
-        <button onClick={() => restart()}>Restart</button>
-      </>
-    );
-  }
-
+  const [currentIndex, setCurrentIndex] = useState(0);
   const nextArticle = () => {
     setCurrentIndex((prevIndex) => Number(prevIndex) + 1);
-    localStorage.setItem("index", (currentIndex + 1).toString());
   };
 
+  const resetIndex = () => { setCurrentIndex(0) }
+
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col col-start-2">
       <div
         id="news-container"
-        className=" flex flex-col justify-self-center max-w-lg w-auto h-auto mt-20"
+        className=" flex flex-col justify-self-center max-w-lg w-auto h-full mt-20"
       >
         <div id="heading" className="">
-          <BackButton handleClick={() => back()} />
+          <BackButton handleClick={() => resetIndex()} />
+          <div id="image" className="w-full h-84">
+            <img
+              className="w-full h-full object-cover rounded-md"
+              src={props[currentIndex].urlToImage}
+              alt="article image"
+            />
+          </div>
           <div id="name-and-source" className="pb-10 pt-5">
             <h3 className="text-xl text-right">
               {props[currentIndex].sourceName}
@@ -75,7 +53,7 @@ export default function NewsCard({ props }: any) {
       >
         Read More
       </a>
-      <div className="w-auto flex flex-row md:gap-10 gap-5 justify-center h-80 mt-12">
+      <div className="w-auto flex flex-row md:gap-10 gap-5 justify-center h-80 mt-12 mb-20">
         <SaveButton arrow="&#x2193;" articleId={props[currentIndex].id} />
         <NextButton arrow="&#x2192;" handleClick={() => nextArticle()} />
       </div>

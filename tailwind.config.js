@@ -20,6 +20,7 @@ module.exports = {
         bigBH: '65px',
         backButtonH: '25px',
         smBH: '50px',
+        mainContainerH: '60rem',
       }, 
       colors: {
         customPink: "#FF6095",

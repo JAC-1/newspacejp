@@ -38,7 +38,7 @@ export default function RootLayout({ children }: Props) {
           <NavMenu />
           <div
             id="container"
-            className="text-neutral-200 flex align-middle justify-center w-full h-full"
+            className="text-neutral-200 flex align-middle justify-center w-full h-mainContainerH"
           >
             {children}
           </div>

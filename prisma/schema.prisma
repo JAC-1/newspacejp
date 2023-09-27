@@ -42,18 +42,18 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String      @id @default(cuid())
   name          String?
-  bio           String?   @db.Text
+  bio           String?     @db.Text
   age           Int?
-  email         String?    @unique
+  email         String?     @unique
   emailVerified DateTime?
   image         String?
   accounts      Account[]
   sessions      Session[]
-  followedBy    Follows[] @relation("following")
-  following     Follows[] @relation("follower")
-  savednews     SavedNews[] 
+  followedBy    Follows[]   @relation("following")
+  following     Follows[]   @relation("follower")
+  savednews     SavedNews[]
 }
 
 model Follows {
@@ -65,25 +65,27 @@ model Follows {
   @@id([followerId, followingId])
 }
 
+// TODO: Add language to Article
+
 model Article {
-  id String @id @default(cuid())
-  title String
-  author String?
-  content String?
+  id          String      @id @default(cuid())
+  title       String
+  author      String?
+  content     String?
   description String?
   publishedAt String?
-  sourceName String
-  url String
-  urlToImage String
-  savednews SavedNews[] 
+  sourceName  String
+  url         String
+  urlToImage  String
+  savednews   SavedNews[]
 }
 
-
 model SavedNews {
-  user User @relation(fields: [userId], references:[id])
-  userId String 
-  article Article @relation(fields: [articleId], references:[id])
+  user      User    @relation(fields: [userId], references: [id])
+  userId    String
+  article   Article @relation(fields: [articleId], references: [id])
   articleId String
+
   @@id([userId, articleId])
 }
 

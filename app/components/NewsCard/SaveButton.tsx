@@ -1,13 +1,14 @@
-"use client"
+"use client";
 
 import { useRouter } from "next/navigation";
 import { useTransition, useState } from "react";
 
-
 interface Params {
   arrow: string;
-  articleId: string
+  articleId: string;
 }
+
+// TODO: If the article is already saved, change the button to "Saved" and style it differently
 
 export default function BigButton({ arrow, articleId }: Params) {
   const router = useRouter();
@@ -16,7 +17,7 @@ export default function BigButton({ arrow, articleId }: Params) {
   const isMutating = isSaving || isPending;
 
   const save = async () => {
-    setIsSaving(true)
+    setIsSaving(true);
 
     try {
       const res = await fetch("/api/saveNews", {
@@ -27,13 +28,12 @@ export default function BigButton({ arrow, articleId }: Params) {
         body: JSON.stringify({ articleId: articleId }),
       });
 
-      console.log(res)
-      setIsSaving(false)
-      startTransition(() => router.refresh())
-    } catch(e) {
-      console.log(`An error has occured: ${e}`)
+      setIsSaving(false);
+      startTransition(() => router.refresh());
+    } catch (e) {
+      console.log(`An error has occured: ${e}`);
     }
-  }
+  };
 
   return (
     <button

@@ -20,6 +20,7 @@ Some of the code has unnecessary comments. These are learning notes.
 
 ## Future Implementations
 
-- Save your favorite news articles
-- hover or tap to look up unknown words
-- Bing news API / ai suggestions
+- ✅ Save your favorite news articles 
+- hover or tap to look up unknown words 
+- User read history stored on db
+- Buttons reflect if article is already saved or not

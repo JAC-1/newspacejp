@@ -1,26 +1,47 @@
-'use client';
+"use client";
 
-import { useSession, signIn, signOut } from 'next-auth/react';
-import Image from 'next/image';
-import Link from 'next/link';
+import { useSession, signIn, signOut } from "next-auth/react";
+import Image from "next/image";
+import Link from "next/link";
+import { useState, useEffect } from "react";
 
 export function SignInButton() {
-  const { data: session, status } = useSession();
-  console.log(session, status);
+  const [showImage, setShowImage] = useState(false);
 
-  if (status === 'loading') {
-    return <>...</>;
+  const { data: session, status } = useSession();
+
+  useEffect(() => {
+    if (status === "authenticated") {
+      const timeoutId = setTimeout(() => {
+        setShowImage(true);
+      }, 1000);
+      return () => clearTimeout(timeoutId);
+    }
+  }, [status]);
+
+  if (status === "loading") {
+    return (
+      <div className="animate-pulse text-black bg-white rounded-md px-3 py-1">
+        Authenticating
+      </div>
+    );
   }
 
-  if (status === 'authenticated') {
+  if (status === "authenticated") {
     return (
       <Link href={`/dashboard`}>
-        <Image
-          src={session.user?.image ?? '/mememan.webp'}
-          width={32}
-          height={32}
-          alt='Your Name'
-        />
+        {showImage ? (
+          <Image
+            src={session.user?.image ?? "../../public/mememan.webp.png"}
+            width={32}
+            height={32}
+            alt="Your Name"
+          />
+        ) : (
+          <div className="text-white bg-green-400 rounded-md px-3 py-1">
+            Success!
+          </div>
+        )}
       </Link>
     );
   }
@@ -30,8 +51,8 @@ export function SignInButton() {
 
 export function SignOutButton() {
   return (
-    <Link href={'/'}>
-      <button onClick={() => signOut({ callbackUrl: '/' })}>Sign out</button>
+    <Link href={"/"}>
+      <button onClick={() => signOut({ callbackUrl: "/" })}>Sign out</button>
     </Link>
   );
 }

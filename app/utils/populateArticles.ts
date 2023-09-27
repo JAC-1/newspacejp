@@ -17,13 +17,13 @@ interface ArticleData {
   content?: string;
 }
 
-async function queryNewsApi(): Promise<ApiResponse> {
-  const country = "jp"
-const key = process.env.NEWSAPI_KEY;
+async function queryNewsApi(country: string): Promise<ApiResponse> {
+  const key = process.env.NEWSAPI_KEY;
   const articles = await fetch(
     `https://newsapi.org/v2/top-headlines?country=${country}&apiKey=${key}`,
-    {cache: 'no-store'}  ).then((res) => res.json());
-// Make sure it doesn't cache the response
+    { cache: "no-store" }
+  ).then((res) => res.json());
+  // Make sure it doesn't cache the response
   return articles as ApiResponse;
 }
 
@@ -46,19 +46,17 @@ async function populateDb(entries: ApiResponse): Promise<void> {
       url: article.url,
       urlToImage: article.urlToImage,
     }));
-  // console.log(payLoad.slice(0, 10));
   console.log(payLoad);
-  await prisma.article.createMany({ data: payLoad });
+  await prisma.article.createMany({ data: payLoad, skipDuplicates: true });
   return;
 }
 
-export const startScheduledJob = async () => {
-  const articleData = (await queryNewsApi()) as ApiResponse;
+export const startScheduledJob = async (country: string) => {
+  const articleData = (await queryNewsApi(country)) as ApiResponse;
   // const job = schedule.scheduleJob("0 5 * * *", async () => {
   //   await populateDb(articleData);
   // });
   // @ts-ignore
-  // await populateDb(articleData);
-  return articleData
-
+  await populateDb(articleData);
+  return articleData;
 };
