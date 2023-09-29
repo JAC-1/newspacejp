@@ -26,7 +26,6 @@ type Props = {
   children: React.ReactNode;
 };
 
-
 export default function RootLayout({ children }: Props) {
   return (
     <AuthProvider>
@@ -34,7 +33,7 @@ export default function RootLayout({ children }: Props) {
         lang="en"
         className={`${bebas.variable} ${inter.variable} ${roboto_mono.variable} h-screen scroll-ms-6`}
       >
-        <body className="bg-neutral-800 h-full">
+        <body className="bg-neutral-800 h-full ">
           <NavMenu />
           <div
             id="container"

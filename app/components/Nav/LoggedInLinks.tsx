@@ -16,6 +16,9 @@ export default function LoggedInLinks({ authenticated }: Params) {
           <Link href={"/articles"}>Articles</Link>
         </li>
         <li className="p-2 md:text-xl md:p-0 text-neutral-400 transition duration-500 hover:text-white">
+          <Link href={"/savedNews"}>Saved</Link>
+        </li>
+        <li className="p-2 md:text-xl md:p-0 text-neutral-400 transition duration-500 hover:text-white">
           <Link href={"/users"}>Users</Link>
         </li>
         <li className="p-2 md:text-xl md:p-0 text-neutral-400 transition duration-500 hover:text-white">

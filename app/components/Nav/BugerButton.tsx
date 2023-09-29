@@ -20,7 +20,7 @@ export default function BugerButton() {
     <div>
       <AiOutlineMenu
         onClick={() => handleBugerButton()}
-        className="self-center md:hidden mr-5"
+        className="self-center md:hidden mr-5 z-20"
         color={"white"}
         size={42}
       />

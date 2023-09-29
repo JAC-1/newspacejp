@@ -16,7 +16,7 @@ export default function NavLinks() {
   const authenticated: boolean = status == "authenticated" ? true : false;
 
   return (
-    <ul className="hidden md:flex items-center justify-between flex-row gap-5 pr-6 text-neutral-300 ">
+    <ul className="z-20 hidden md:flex items-center justify-between flex-row gap-5 pr-6 text-neutral-300 ">
       <LoggedInLinks authenticated={authenticated} />
       <li className="text-xl p-0 text-neutral-400 transition duration-500 hover:text-white ">
         <SignInButton />

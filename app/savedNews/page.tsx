@@ -1,7 +1,8 @@
 import { getServerSession } from "next-auth";
-import NewsCard from "../components/NewsCard/NewsCard";
 import { prisma } from "@/lib/prisma";
 import { authOptions } from "../api/auth/[...nextauth]/route";
+import SavedNewsCard from "../components/SavedNews/NewsCard";
+
 
 export default async function SavedNews() {
   const session = await getServerSession(authOptions);
@@ -33,7 +34,7 @@ export default async function SavedNews() {
       <h1>Saved News</h1>
       <div>
         {articles.map((article) => {
-          return <NewsCard {...article} />;
+          return <SavedNewsCard key={article.id} title={article.title} image={article.urlToImage} date={article.publishedAt} />;
         })}
       </div>
     </div>
