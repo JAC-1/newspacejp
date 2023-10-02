@@ -13,13 +13,15 @@ export default function NewsCard({ props }: any) {
     setCurrentIndex((prevIndex) => Number(prevIndex) + 1);
   };
 
-  const resetIndex = () => { setCurrentIndex(0) }
+  const resetIndex = () => {
+    setCurrentIndex(0);
+  };
 
   return (
     <div className="flex flex-col col-start-2">
       <div
         id="news-container"
-        className=" flex flex-col justify-self-center max-w-lg w-auto h-full mt-20"
+        className=" flex flex-col justify-self-center max-w-lg w-auto  mt-20"
       >
         <div id="heading" className="">
           <BackButton handleClick={() => resetIndex()} />

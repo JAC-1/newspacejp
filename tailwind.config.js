@@ -18,6 +18,7 @@ module.exports = {
         cardWidth: "20rem",
       },
       height: {
+        desktopH: "90rem",
         bigBH: "65px",
         backButtonH: "25px",
         smBH: "50px",
