@@ -16,6 +16,8 @@ module.exports = {
         barInputHight: "6.5rem",
         bioInputHight: "17rem",
         cardWidth: "20rem",
+        startButtonWMobile: "15rem",
+        
       },
       height: {
         desktopH: "60rem",
@@ -25,6 +27,7 @@ module.exports = {
         startButtonH: "300px",
         mainContainerH: "60rem",
         cardHeight: "30rem",
+        navBarHeight: "4.5rem",
       },
       top: {
         mobileTop: "10px",

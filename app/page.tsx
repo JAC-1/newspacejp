@@ -37,7 +37,7 @@ export default function Home() {
             </h2>
             <Link
               href={"/about"}
-              className="flex justify-center bg-green-500 text-white md:w-startButtonW py-4 px-6 md:py-5 md:px-32 rounded-xl self-center md:self-start md:my-52 md:mx-6 m-15 hover:bg-green-600"
+              className="flex justify-center bg-green-500 text-white md:w-startButtonW w-startButtonWMobile self-center py-4 px-6 md:py-5 md:px-32 rounded-xl self-center md:self-start md:my-52 md:mx-6 m-15 hover:bg-green-600"
             >
               <span className="md:text-2xl text-xl whitespace-nowrap">
                 Start Learning
