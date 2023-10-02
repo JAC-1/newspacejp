@@ -16,7 +16,7 @@ export default function Home() {
         </h2>
         {status === "authenticated" ? (
           <div className="flex flex-col h-full">
-            <h3 className="text-2xl">Welcome back, {data.user.name}!</h3>
+            <h3 className="text-2xl">Welcome back, {data?.user?.name}!</h3>
             <Link
               href={"/articles"}
               className="flex justify-center bg-green-500 text-white md:w-startButtonW py-4 px-6 md:py-5 md:px-32 rounded-xl self-center md:self-start md:my-52 md:mx-6 m-15 hover:bg-green-600"

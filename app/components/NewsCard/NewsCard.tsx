@@ -33,7 +33,6 @@ export default function NewsCard({ props }: any) {
                 props[currentIndex]?.urlToImage ??
                 "../../public/newspaperbackground.jpg"
               }
-              src={props[currentIndex]?.urlToImage}
               alt="article image"
             />
           </div>
