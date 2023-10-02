@@ -7,9 +7,10 @@ import BugerButton from "./components/Nav/BugerButton";
 
 export default function () {
   return (
-    <nav className=" z-20 flex w-full h-20 flex-wrap items-center justify-between py-2 hover:text-neutral-700 focus:text-neutral-700 dark:bg-transparent fixed border-b-2 border-neutral-600 lg:py-4">
-      <div className="absolute inset-0 bg-neutral-900 bg-opacity-50 backdrop-filter backdrop-blur-lg z-10"></div>
-      <Link href={"/"} className="pl-5 relative z-20">
+    <nav className="z-20 flex w-full h-2 flex-wrap items-center justify-between py-2 hover:text-neutral-700 focus:text-neutral-700 dark:bg-transparent fixed border-b-2 border-neutral-600 lg:py-4">
+      {/* adds a blur to the background */}
+      <div className="z-10 absolute inset-0 bg-neutral-900 bg-opacity-50 backdrop-filter backdrop-blur-lg h-14"></div>
+      <Link href={"/"} className="pl-5 relative z-30">
         <Image
           className=""
           src="/Logo.png"

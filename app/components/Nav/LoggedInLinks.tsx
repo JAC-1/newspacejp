@@ -4,7 +4,6 @@ interface Params {
   authenticated: boolean;
 }
 
-
 export default function LoggedInLinks({ authenticated }: Params) {
   if (authenticated) {
     return (

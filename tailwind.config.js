@@ -18,13 +18,16 @@ module.exports = {
         cardWidth: "20rem",
       },
       height: {
-        desktopH: "90rem",
+        desktopH: "60rem",
         bigBH: "65px",
         backButtonH: "25px",
         smBH: "50px",
         startButtonH: "300px",
         mainContainerH: "60rem",
         cardHeight: "30rem",
+      },
+      top: {
+        mobileTop: "10px",
       },
       colors: {
         customPink: "#FF6095",

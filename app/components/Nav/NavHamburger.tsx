@@ -20,8 +20,8 @@ export default function NavHamburger({ showMenu, handleClick }: Params) {
   return (
     <div>
       {showMenu ? (
-        <div className="z-20 md:hidden top-16 text-white text-2xl pl-10 fixed right-0 flex flex-col bg-black w-56 h-2/4 transition-all duration-500 ease-in-out">
-          <ul className="relative top-12">
+        <div className="z-20 md:hidden top-14 text-white text-2xl pl-10 fixed right-0 flex flex-col bg-black w-56 h-2/4 transition-all duration-500 ease-in-out">
+          <ul className="relative top-7">
             <LoggedInLinks authenticated={isAuthenticated} />
             <li className="p-2">
               <SignInButton />

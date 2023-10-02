@@ -17,7 +17,7 @@ export default function BugerButton() {
     setShowBurgerMenu(false);
   };
   return (
-    <div>
+    <div className="z-30">
       <AiOutlineMenu
         onClick={() => handleBugerButton()}
         className="self-center md:hidden mr-5 z-20"
