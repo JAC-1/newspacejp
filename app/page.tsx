@@ -16,7 +16,10 @@ export default function Home() {
         </h2>
         {status === "authenticated" ? (
           <div className="flex flex-col h-full">
-            <h3 className="text-2xl">Welcome back, {data.user.name}!</h3>
+            <h3 className="text-2xl">
+              Welcome back,{" "}
+              {data?.user?.name! ?? "totally a human with no name."}!
+            </h3>
             <Link href={"/articles"}>
               <button className="text-2xl">Continue Reading</button>
             </Link>

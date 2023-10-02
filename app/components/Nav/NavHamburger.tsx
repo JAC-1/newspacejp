@@ -1,4 +1,4 @@
-import { SignInButton } from "../LoginButton";
+import SignInButton from "./LoginButton";
 import Link from "next/link";
 import LoggedInLinks from "./LoggedInLinks";
 import { useSession } from "next-auth/react";
