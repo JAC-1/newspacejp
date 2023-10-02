@@ -1,6 +1,7 @@
 import NextAuth from "next-auth";
 import type { NextAuthOptions } from "next-auth";
 import GithubProvider from "next-auth/providers/github"; // Import providers you wish to use to authenticate.
+import GoogleProvider from "next-auth/providers/google"; // Import providers you wish to use to authenticate.
 import { prisma } from "@/lib/prisma"; // import prisma module that we made a while ago
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 
@@ -22,6 +23,11 @@ export const authOptions: NextAuthOptions = {
       clientId: process.env.GITHUB_ID!, // These are stored in the root .env file
       clientSecret: process.env.GITHUB_SECRET!,
     }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID!, // These are stored in the root .env file
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+    }),
+
   ],
   callbacks: {
     //@ts-ignore
