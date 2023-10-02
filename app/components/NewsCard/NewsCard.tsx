@@ -17,6 +17,7 @@ export default function NewsCard({ props }: any) {
     setCurrentIndex(0);
   };
 
+  // TODO: Error page or message when there are no articles to show
   return (
     <div className="flex flex-col col-start-2">
       <div
@@ -32,6 +33,7 @@ export default function NewsCard({ props }: any) {
                 props[currentIndex]?.urlToImage ??
                 "../../public/newspaperbackground.jpg"
               }
+              src={props[currentIndex]?.urlToImage}
               alt="article image"
             />
           </div>
