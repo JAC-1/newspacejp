@@ -15,6 +15,8 @@ export default async function Article() {
     take: 10,
   });
 
+  revalidatePath("/article");
+
   // TODO: Position next and save buttons next to the news card
   return <NewsCard props={articles} />;
 }
