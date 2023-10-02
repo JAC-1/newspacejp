@@ -29,17 +29,20 @@ import { NextRequest, NextResponse } from "next/server";
 //     .findUnique({ where: { email: userEmail } })
 //     .then((user) => user?.id!);
 
-  // const record = await prisma.follows.delete({
-  //   where: {
-  //     followerId_followingId: {
-  //       // to test for entry matches; I think this block @@id([followerId, followingId]) in the schema is related
-  //       followerId: currentUserId,
-  //       followingId: targetUserId!,
-  //     },
-  //   },
-  // });
+// const record = await prisma.follows.delete({
+//   where: {
+//     followerId_followingId: {
+//       // to test for entry matches; I think this block @@id([followerId, followingId]) in the schema is related
+//       followerId: currentUserId,
+//       followingId: targetUserId!,
+//     },
+//   },
+// });
 
-  // return NextResponse.json(record);
+// return NextResponse.json(record);
 
-  return NextResponse.json({"Message": "Fix this route to enable follows."});
+// }
+
+export async function GET() {
+  return NextResponse.json({ Message: "Fix this route to enable follows." });
 }
