@@ -1,4 +1,7 @@
 import ServerForm from "./ProfileServerForm";
+import { signOut } from "next-auth/react";
+import SignInButton from "../components/Nav/LoginButton";
+import SignOutButton from "./SignOutButton";
 
 export default async function Dashboard() {
   return (
@@ -9,6 +12,7 @@ export default async function Dashboard() {
       <div className="w-2/3 max-w-4xl self-center flex-1">
         <ServerForm />
       </div>
+      <SignOutButton />
     </div>
   );
 }
