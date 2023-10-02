@@ -1,7 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import { SignInButton } from "../buttons";
+import SignInButton from "./LoginButton";
 import LoggedInLinks from "./LoggedInLinks";
 import { useSession } from "next-auth/react";
 

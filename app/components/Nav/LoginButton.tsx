@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
-export function SignInButton() {
+export default function SignInButton() {
   const [showImage, setShowImage] = useState(false);
 
   // TODO : Prevent the green success notification from showing up when you refresh the page, or open the hamburger menu.
@@ -51,10 +51,10 @@ export function SignInButton() {
   return <button onClick={() => signIn()}>Sign in</button>;
 }
 
-export function SignOutButton() {
-  return (
-    <Link href={"/"}>
-      <button onClick={() => signOut({ callbackUrl: "/" })}>Sign out</button>
-    </Link>
-  );
-}
+// export function SignOutButton() {
+//   return (
+//     <Link href={"/"}>
+//       <button onClick={() => signOut({ callbackUrl: "/" })}>Sign out</button>
+//     </Link>
+//   );
+// }
