@@ -19,6 +19,12 @@ const nextConfig = {
         port: "",
         pathname: "/a/**",
       },
+      {
+        protocol: "https",
+        hostname: "profile.line-scdn.net",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
 };
