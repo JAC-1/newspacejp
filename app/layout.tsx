@@ -26,6 +26,8 @@ type Props = {
   children: React.ReactNode;
 };
 
+// TODO: on mobile the body content should have enough padding to display the heading properly (see Provile for example problem)
+
 export default function RootLayout({ children }: Props) {
   return (
     <AuthProvider>
