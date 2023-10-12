@@ -21,9 +21,8 @@ async function queryNewsApi(country: string): Promise<ApiResponse> {
   const key = process.env.NEWSAPI_KEY;
   const articles = await fetch(
     `https://newsapi.org/v2/top-headlines?country=${country}&apiKey=${key}`,
-    { cache: "no-store" }
+    { cache: "no-store" } // Make sure it doesn't cache the response
   ).then((res) => res.json());
-  // Make sure it doesn't cache the response
   return articles as ApiResponse;
 }
 

@@ -3,7 +3,7 @@ import Image from "next/image";
 import NavLinks from "./components/Nav/NavLinks";
 import BugerButton from "./components/Nav/BugerButton";
 
-// TODO : When you click your profile image it takes you to your profile page.
+
 
 export default function () {
   return (

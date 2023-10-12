@@ -1,21 +1,29 @@
 import NewsCard from "@/app/components/NewsCard/NewsCard";
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
+import { Article } from "@prisma/client";
 import dateConstructor from "../utils/dateConstructor";
-import NewsError from "../components/NewsCard/NewsError";
+
 
 export default async function Article() {
-  const last5DatesArray: string[] = dateConstructor();
-  const today = last5DatesArray[0];
-  const yesterday = last5DatesArray[1];
-  const twodaysago = last5DatesArray[2];
+
+  const dates = dateConstructor()
+
 
   const articles = await prisma.article.findMany({
-    where: { publishedAt: { contains: today || yesterday || twodaysago } },
-    take: 10,
-  });
+    where: { publishedAt: { contains: dates.yesterday}}
+})
+  // const articles = new Array()
+
+  // create a store of articles from prisma for current day
+  // if the store is not 10, then query prisma for the previous day and add to store
+  // if the store is not 10, then query prisma for two days previous and add to store
+
+
 
   revalidatePath("/article");
+  // console.log(articles.length)
+  console.log(dates.yesterday)
 
   // TODO: Position next and save buttons next to the news card
   return <NewsCard props={articles} />;

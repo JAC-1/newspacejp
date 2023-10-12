@@ -4,13 +4,18 @@ import { useState, useEffect } from "react";
 import NextButton from "../NewsCard/NextButton";
 import SaveButton from "../NewsCard/SaveButton";
 import BackButton from "../NewsCard/BackButton";
+import type { Article } from "@prisma/client";
 
 // https://newsapi.org/v2/top-headlines?country=jp&apiKey=b4a3e5178b6a48abbc9e71dcee047e96
+//
+interface Params  {
+  props: Article[]
+}
 
-export default function NewsCard({ props }: any) {
-  const [currentIndex, setCurrentIndex] = useState(0);
+export default function NewsCard({ props }: Params) {
+  const [currentIndex, setCurrentIndex] = useState(props.length - 1);
   const nextArticle = () => {
-    setCurrentIndex((prevIndex) => Number(prevIndex) + 1);
+    setCurrentIndex((prevIndex) => Number(prevIndex) - 1);
   };
 
   const resetIndex = () => {
