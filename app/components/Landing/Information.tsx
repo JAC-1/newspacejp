@@ -1,6 +1,6 @@
 export default function Information() {
   return (
-    <div className="md:max-w-4xl self-center h-fit mt-36 mb-20 md:mb-20 md:mt-0">
+    <div className="md:max-w-4xl self-center h-fit  mb-20 md:mb-20 ">
       <h1 className="text-5xl md:text-titleSize md:p-10 px-7 py-5 text-center md:text-left">
         Boost your reading by up to
         <span className="underline text-yellow-300"> 250%</span>

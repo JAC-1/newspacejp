@@ -29,6 +29,7 @@ module.exports = {
         navBarHeight: "4.5rem",
         informationHeight: "60vh",
         mainPageHeight: "100em",
+        landingPageImageHeight: "38rem",
       },
       top: {
         mobileTop: "10px",

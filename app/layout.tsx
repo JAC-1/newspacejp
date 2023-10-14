@@ -39,7 +39,7 @@ export default function RootLayout({ children }: Props) {
           <NavMenu />
           <div
             id="bodyContainer"
-            className="text-neutral-200 flex align-middle justify-center w-full h-fit md:mt-20 "
+            className="text-neutral-200 flex align-middle justify-center w-full h-fit mt-20 "
           >
             {/* might have to change h for container after looking at other pages  */}
             {children}

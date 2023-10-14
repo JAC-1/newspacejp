@@ -9,13 +9,13 @@ export default function Home() {
 
   return (
     <div id="container" className="flex flex-col  ">
-      <div className="flex flex-col h-full mt-24 z-10">
+      <div className="flex flex-col h-fit  z-10">
         {status === "authenticated" ? (
           <>
             <h1 className="md:text-welcomeSize text-8xl md:text-left whitespace-normal text-center px-8 font-be mt-14">
               Welcome back to NewSpace
             </h1>
-            <div className="flex flex-col h-full mb-72">
+            <div className="flex flex-col h-full mb-20 md:mb-72">
               <h3 className="text-3xl font-bold self-center pb-10 md:self-start md:px-9">
                 Welcome back, {data?.user?.name}!
               </h3>
@@ -39,7 +39,7 @@ export default function Home() {
             </h2>
             <Link
               href={"/api/auth/signin"}
-              className="flex justify-center bg-green-500 text-white md:w-startButtonW w-startButtonWMobile  py-4 px-6 md:py-5 md:px-32 rounded-xl self-center md:self-start md:my-52 md:mx-6 m-15 hover:bg-green-600"
+              className="flex justify-center bg-green-500 text-white md:w-startButtonW w-startButtonWMobile  py-4 px-6 md:py-5 mb-20 md:px-32 rounded-xl self-center md:self-start md:my-52 md:mx-6 m-15 hover:bg-green-600"
             >
               <span className="md:text-2xl text-xl whitespace-nowrap">
                 Start Learning
@@ -51,7 +51,7 @@ export default function Home() {
       <Information />
       <Testimonials />
       <div
-        className="absolute w-screen inset-0 bg-cover bg-center bg-fixed bg-no-repeat opacity-20 h-3/4 md:h-screen"
+        className="absolute w-screen inset-0 bg-cover bg-center bg-fixed bg-no-repeat opacity-20 h-landingPageImageHeight md:h-screen"
         style={{
           backgroundImage: "url('/newspaperbackground.jpg')",
           backgroundColor: "rgba(0, 0, 0, 0.2)",
