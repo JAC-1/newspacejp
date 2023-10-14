@@ -17,7 +17,6 @@ module.exports = {
         bioInputHight: "17rem",
         cardWidth: "20rem",
         startButtonWMobile: "15rem",
-        
       },
       height: {
         desktopH: "60rem",
@@ -28,6 +27,8 @@ module.exports = {
         mainContainerH: "60rem",
         cardHeight: "30rem",
         navBarHeight: "4.5rem",
+        informationHeight: "60vh",
+        mainPageHeight: "100em",
       },
       top: {
         mobileTop: "10px",
@@ -38,6 +39,13 @@ module.exports = {
         customWhite: "#FEF4FF",
         inputGrey: "#555555",
         cardBackground: "#4F4F4F",
+        primaryColorGrayishBlue: "hsl(217, 19%, 35%)",
+        primaryColorBlue: "hsl(217, 90%, 31%)",
+        primaryColorWhite: "hsl(0, 0%, 100%)",
+        primaryColorBlackishBlue: "rgb(25, 33, 46)",
+        primaryColorBlackishBlueOpacity: "rgba(25, 33, 46, 0.8)",
+        neutralLightGray: "hsl(0, 0%, 81%)",
+        neutralGrayishBlue: "hsl(210, 46%, 95%)",
       },
       fontFamily: {
         sans: ["var(--font-inter)"],
@@ -47,6 +55,12 @@ module.exports = {
       fontSize: {
         titleSize: "120px",
         welcomeSize: "150px",
+        testimonialBodySize: "13px",
+        informationSubtitleSize: "30px",
+      },
+      fontWeight: {
+        testimonialh1weight: "600",
+        testimonialh2andpFontWeight: "500",
       },
       backgroundImage: {
         "hero-image": "url('/public/newspaperbackground.jpg')",

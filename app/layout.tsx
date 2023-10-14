@@ -33,18 +33,19 @@ export default function RootLayout({ children }: Props) {
     <AuthProvider>
       <html
         lang="en"
-        className={`${bebas.variable} ${inter.variable} ${roboto_mono.variable} h-full md:h-desktopH scroll-ms-6`}
+        className={`${bebas.variable} ${inter.variable} ${roboto_mono.variable} h-fit md:h-desktopH scroll-ms-6`}
       >
-        <body className="bg-neutral-800 h-full flex flex-col">
+        <body className="bg-neutral-800 h-fit flex flex-col">
           <NavMenu />
           <div
-            id="container"
-            className="text-neutral-200 flex align-middle justify-center w-full h-full md:mt-20 "
+            id="bodyContainer"
+            className="text-neutral-200 flex align-middle justify-center w-full h-fit md:mt-20 "
           >
+            {/* might have to change h for container after looking at other pages  */}
             {children}
           </div>
-          <Footer />
         </body>
+        <Footer />
       </html>
     </AuthProvider>
   );
