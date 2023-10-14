@@ -1,12 +1,12 @@
-import { prisma } from '@/lib/prisma';
-import { NextResponse } from 'next/server';
-import { authOptions } from '../auth/[...nextauth]/route';
-import { getServerSession } from 'next-auth';
+import { prisma } from "@/lib/prisma";
+import { NextResponse } from "next/server";
+import { authOptions } from "../auth/[...nextauth]/route";
+import { getServerSession } from "next-auth";
 
-export async function GET() {
-  const users = await prisma.user.findMany();
-  return NextResponse.json(users);
-}
+// export async function GET() {
+//   const users = await prisma.user.findMany();
+//   return NextResponse.json(users);
+// }
 
 // Make a Post to update prisma.user using the users current email who is currently authenticated
 

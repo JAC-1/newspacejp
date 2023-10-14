@@ -15,7 +15,7 @@ export default function Home() {
             <h1 className="md:text-welcomeSize text-8xl md:text-left whitespace-normal text-center px-8 font-be mt-14">
               Welcome back to NewSpace
             </h1>
-            <div className="flex flex-col h-full">
+            <div className="flex flex-col h-full mb-72">
               <h3 className="text-3xl font-bold self-center pb-10 md:self-start md:px-9">
                 Welcome back, {data?.user?.name}!
               </h3>
